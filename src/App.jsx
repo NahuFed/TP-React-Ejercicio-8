@@ -7,9 +7,12 @@ function App() {
 
   return (
     <>
-    <Container className='mt-5'>
+    <Container className='main mt-5'>
       <Formulario></Formulario>
     </Container>
+    <footer className="bg-dark text-center text-light py-4">
+        <p>&copy; Todos los derechos reservados </p>
+      </footer>     
     </>
   )
 }
