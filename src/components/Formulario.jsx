@@ -1,10 +1,15 @@
-import React, { useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import TituloFormulario from "./TituloFormulario";
 import { useForm } from "react-hook-form";
 import { dniValidator } from "./validators";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
+import { useState } from "react";
+
+
 
 const Formulario = () => {
+  
   const {
     register,
     formState: { errors },
@@ -12,9 +17,20 @@ const Formulario = () => {
     handleSubmit,
   } = useForm();
 
+  const[arrayObjetos, setArrayObjetos]=useState([{}])
+
   const onSubmit = (data) => {
-    console.log(data);
+    const MySwal = withReactContent(Swal);
+
+    if (Object.keys(errors).length > 0) {
+      MySwal.fire("Mal ahi!", "Te faltaron llenar datos!", "error");
+    } else {
+      MySwal.fire("Bien ahi!", "Gracias por tus datos!", "success");
+    }
+    setArrayObjetos([...arrayObjetos,data])
+    console.log(arrayObjetos)
   };
+
 
   const incluirTelefono = watch("incluirTelefono");
   return (
@@ -39,8 +55,11 @@ const Formulario = () => {
             placeholder="Apellido"
             aria-label="Apellido"
             aria-describedby="apellido"
-            required
-            {...register("apellido")}
+            
+            {...register("apellido",{
+              required: true,
+              maxLength: 50,
+            })}
           />
         </InputGroup>
 
@@ -65,8 +84,10 @@ const Formulario = () => {
           <Form.Control
             type="email"
             placeholder="name@example.com"
-            required
+            
             {...register("email", {
+              required: true,
+              maxLength: 74,
               pattern: /^[^@]+@[^@]+\.[a-zA-Z]{2,}$/i,
             })}
           />
