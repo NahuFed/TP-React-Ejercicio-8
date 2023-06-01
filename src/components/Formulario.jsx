@@ -74,7 +74,7 @@ const Formulario = () => {
         {incluirTelefono && (
           <InputGroup>
             <InputGroup.Text id="telefono">Telefono</InputGroup.Text>
-            <Form.Control type="tel" placeholder="381 1 123 456" />
+            <Form.Control type="tel" placeholder="381 1 123 456"{...register("telefono")} />
           </InputGroup>
         )}
         <div>
