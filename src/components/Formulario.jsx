@@ -34,10 +34,13 @@ const Formulario = () => {
 
   const incluirTelefono = watch("incluirTelefono");
   return (
-    <div>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+    <>
+      <Form onSubmit={handleSubmit(onSubmit) }>
+        
         <TituloFormulario></TituloFormulario>
+        <div className="p-5 border border-2  border-top-0 border-black ">
 
+        
         <InputGroup className="mb-3">
           <InputGroup.Text>Nombre</InputGroup.Text>
           <Form.Control
@@ -116,8 +119,9 @@ const Formulario = () => {
         {errors.dni && (
           <p className="error">El dni debe estar entre 1 y 80.000.000</p>
         )}
+        </div>
       </Form>
-    </div>
+    </>
   );
 };
 
